@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v4";
+const CACHE_NAME = "data-flashcards-v5";
 const PRECACHE_URLS = [
   "./",
   "index.html",
@@ -17,6 +17,7 @@ const PRECACHE_URLS = [
   "data/cards-stats.js",
   "data/cards-regression.js",
   "data/cards-analyse.js",
+  "data/cards-dataeng.js",
   "icons/icon-192.png",
   "icons/icon-512.png",
   "icons/icon-512-maskable.png",

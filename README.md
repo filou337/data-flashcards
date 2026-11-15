@@ -1,6 +1,6 @@
 # Data Flashcards
 
-App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation et l'analyse de données — 287 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
+App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation, l'analyse de données et le data engineering — 325 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
 
 Aucune dépendance, aucun build : HTML/CSS/JS pur, données en `localStorage`, installable comme app sur téléphone (PWA).
 

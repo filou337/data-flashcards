@@ -7,6 +7,7 @@ import { cardsCasPratique } from "./cards-cas-pratique.js";
 import { cardsStats } from "./cards-stats.js";
 import { cardsRegression } from "./cards-regression.js";
 import { cardsAnalyse } from "./cards-analyse.js";
+import { cardsDataEng } from "./cards-dataeng.js";
 
 export const ALL_CARDS = [
   ...cardsSQL,
@@ -18,6 +19,7 @@ export const ALL_CARDS = [
   ...cardsStats,
   ...cardsRegression,
   ...cardsAnalyse,
+  ...cardsDataEng,
 ];
 
 export const LANGUES = [
@@ -30,6 +32,7 @@ export const LANGUES = [
   { id: "stats", label: "Stats & tests", color: "#3a7d2c" },
   { id: "regression", label: "Régression & modélisation", color: "#1f6f9a" },
   { id: "analyse", label: "Analyse de données", color: "#8a3f7a" },
+  { id: "dataeng", label: "Data engineering", color: "#5a6170" },
 ];
 
 export const NIVEAUX = ["fondamentaux", "intermediaire", "avance", "pro"];

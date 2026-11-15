@@ -10,6 +10,7 @@ import { cardsAnalyse } from "./cards-analyse.js";
 import { cardsDataEng } from "./cards-dataeng.js";
 import { cardsTests } from "./cards-tests.js";
 import { cardsBigData } from "./cards-big-data.js";
+import { cardsDaxPowerPivot } from "./cards-dax-power-pivot.js";
 import { extrasSQL } from "./extras-sql.js";
 import { extrasM } from "./extras-m.js";
 import { extrasDAX } from "./extras-dax.js";
@@ -33,6 +34,7 @@ const BASE_CARDS = [
   ...cardsDataEng,
   ...cardsTests,
   ...cardsBigData,
+  ...cardsDaxPowerPivot,
 ];
 
 export const ALL_CARDS = BASE_CARDS.map((c) => (EXTRAS[c.id] ? { ...c, ...EXTRAS[c.id] } : c));

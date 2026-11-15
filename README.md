@@ -61,6 +61,7 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 | Note | Source | Cartes |
 |---|---|---|
 | Big Data : concepts et technologies | `BigDataASR2022.pdf` (146 diapos) | 35 (deck Big Data) |
+| DAX dans Excel Power Pivot | `ExcDAX-99-99-…v4.4-qs.pdf` (85 pages) | 19 (ajoutées au deck DAX) |
 
 ## Structure du projet
 

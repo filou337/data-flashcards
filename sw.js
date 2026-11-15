@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v11";
+const CACHE_NAME = "data-flashcards-v12";
 const PRECACHE_URLS = [
   "./",
   "index.html",
@@ -11,6 +11,8 @@ const PRECACHE_URLS = [
   "data/notes/index.js",
   "data/notes/big-data.js",
   "data/cards-big-data.js",
+  "data/notes/dax-power-pivot.js",
+  "data/cards-dax-power-pivot.js",
   "data/index.js",
   "data/cards-sql.js",
   "data/cards-m.js",

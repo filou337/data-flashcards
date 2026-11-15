@@ -5,8 +5,10 @@
 
 import { note as bigData } from "./big-data.js";
 import { note as daxPowerPivot } from "./dax-power-pivot.js";
+import { note as scalaParExemple } from "./scala-par-exemple.js";
 
 export const NOTES = [
   bigData,
   daxPowerPivot,
+  scalaParExemple,
 ];

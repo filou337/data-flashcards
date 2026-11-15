@@ -55,9 +55,9 @@ function langColor(id) {
 
 // Groupes de decks affichés sur l'accueil ; tout deck absent de cette liste (ex. cours importés) va dans « Cours importés ».
 const DECK_GROUPS = [
-  { titre: "Langages & outils", ids: ["sql", "m", "dax", "pyspark", "scala"] },
-  { titre: "Analyse & statistiques", ids: ["stats", "regression", "analyse"] },
-  { titre: "Ingénierie & qualité", ids: ["dataeng", "tests", "cas-pratique"] },
+  { titre: "Langages & outils", ids: ["sql", "python", "pyspark", "scala", "dax", "m"] },
+  { titre: "Analyse, statistiques & IA", ids: ["stats", "regression", "analyse", "data-mining", "transformers"] },
+  { titre: "Ingénierie & qualité", ids: ["dataeng", "big-data", "tests", "cas-pratique"] },
 ];
 function deckGroups() {
   const known = new Set(DECK_GROUPS.flatMap(g => g.ids));
@@ -550,7 +550,7 @@ function renderNotesList() {
     const titre = document.createElement("span"); titre.className = "note-card-title"; titre.textContent = n.titre;
     const src = document.createElement("span"); src.className = "note-card-src"; src.textContent = n.source || "";
     const meta = document.createElement("span"); meta.className = "note-card-meta";
-    meta.textContent = `${(n.chapitres || []).length} chapitres · ${nbCartes} cartes`;
+    meta.textContent = `${(n.chapitres || []).length} chapitres · deck ${deck ? deck.label : n.deck} : ${nbCartes} cartes`;
     card.append(titre, src, meta);
     card.addEventListener("click", () => openNote(n.id));
     box.appendChild(card);

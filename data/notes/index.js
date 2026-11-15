@@ -3,5 +3,8 @@
 // Le skill /notes-de-cours ajoute ici l'import et l'entrée correspondante.
 // Format complet : .claude/skills/notes-de-cours/format.md
 
+import { note as bigData } from "./big-data.js";
+
 export const NOTES = [
+  bigData,
 ];

@@ -54,7 +54,7 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 
 | Note | Source | Cartes |
 |---|---|---|
-| *(aucune pour l'instant)* | | |
+| Big Data : concepts et technologies | `BigDataASR2022.pdf` (146 diapos) | 35 (deck Big Data) |
 
 ## Figures interactives
 

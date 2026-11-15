@@ -9,6 +9,7 @@ import { cardsRegression } from "./cards-regression.js";
 import { cardsAnalyse } from "./cards-analyse.js";
 import { cardsDataEng } from "./cards-dataeng.js";
 import { cardsTests } from "./cards-tests.js";
+import { cardsBigData } from "./cards-big-data.js";
 import { extrasSQL } from "./extras-sql.js";
 import { extrasM } from "./extras-m.js";
 import { extrasDAX } from "./extras-dax.js";
@@ -31,6 +32,7 @@ const BASE_CARDS = [
   ...cardsAnalyse,
   ...cardsDataEng,
   ...cardsTests,
+  ...cardsBigData,
 ];
 
 export const ALL_CARDS = BASE_CARDS.map((c) => (EXTRAS[c.id] ? { ...c, ...EXTRAS[c.id] } : c));
@@ -47,6 +49,7 @@ export const LANGUES = [
   { id: "analyse", label: "Analyse de données", color: "#8a3f7a" },
   { id: "dataeng", label: "Data engineering", color: "#5a6170" },
   { id: "tests", label: "Tests & qualité", color: "#a8452f" },
+  { id: "big-data", label: "Big Data", color: "#6b5a1e" },
 ];
 
 export const NIVEAUX = ["fondamentaux", "intermediaire", "avance", "pro"];

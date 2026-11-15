@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v9";
+const CACHE_NAME = "data-flashcards-v10";
 const PRECACHE_URLS = [
   "./",
   "index.html",
@@ -9,6 +9,8 @@ const PRECACHE_URLS = [
   "js/srs.js",
   "js/notes.js",
   "data/notes/index.js",
+  "data/notes/big-data.js",
+  "data/cards-big-data.js",
   "data/index.js",
   "data/cards-sql.js",
   "data/cards-m.js",

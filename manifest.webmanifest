@@ -1,0 +1,16 @@
+{
+  "name": "Data Flashcards — SQL, M, DAX, PySpark, Scala",
+  "short_name": "Data Flashcards",
+  "description": "Révise SQL, Power Query M, DAX, PySpark et Scala avec des flashcards à répétition espacée.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f2f4f0",
+  "theme_color": "#1c7c77",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

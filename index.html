@@ -21,9 +21,6 @@
     <span class="brand-name">Data Flashcards</span>
   </div>
   <div class="topbar-actions">
-    <button id="btnStats" class="icon-btn" type="button" aria-label="Statistiques" title="Statistiques">
-      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M4 20V10h3v10H4Zm6.5 0V4h3v16h-3ZM17 20v-7h3v7h-3Z"/></svg>
-    </button>
     <div class="streak-pill" id="streakPill" title="Série de jours consécutifs">
       <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2c1 3-2 4-2 7a4 4 0 0 0 8 0c0-1-.3-2-.8-2.7.9.6 2.3 2 2.3 4.7a7 7 0 1 1-14 0C5.5 6.5 9.5 5 12 2Z"/></svg>
       <span id="streakCount">0</span>
@@ -35,59 +32,48 @@
 
   <!-- ===== ÉCRAN ACCUEIL ===== -->
   <section id="screenHome" class="screen">
-    <div class="hero-stats">
-      <div class="stat-card">
-        <span class="stat-num" id="statDue">0</span>
-        <span class="stat-label">cartes à réviser</span>
+    <div class="hero">
+      <div class="hero-row">
+        <div>
+          <div class="hero-num" id="statDue">0</div>
+          <div class="hero-label">cartes à réviser aujourd'hui</div>
+        </div>
+        <div class="hero-side">
+          <div><strong id="statSelected">0</strong> sélectionnées</div>
+          <div><strong id="statMastered">0</strong> maîtrisées</div>
+        </div>
       </div>
-      <div class="stat-card">
-        <span class="stat-num" id="statMastered">0</span>
-        <span class="stat-label">maîtrisées</span>
+      <button id="btnStart" class="btn-primary btn-big" type="button">Commencer la session</button>
+      <p class="hint" id="startHint"></p>
+    </div>
+
+    <div class="section-head">
+      <h2 class="panel-title">Decks</h2>
+      <button id="btnToggleAll" class="link-btn" type="button">Tout sélectionner</button>
+    </div>
+    <div id="deckGroups"></div>
+
+    <details class="options" id="sessionOptions">
+      <summary>Niveaux et taille de session <span id="optionsSummary"></span></summary>
+      <div class="options-body">
+        <h3 class="panel-title">Niveau</h3>
+        <div class="chip-row" id="niveauChips"></div>
+        <h3 class="panel-title">Taille de session</h3>
+        <div class="chip-row" id="sizeChips">
+          <button class="chip" data-size="10">10</button>
+          <button class="chip chip-active" data-size="20">20</button>
+          <button class="chip" data-size="40">40</button>
+          <button class="chip" data-size="0">Tout</button>
+        </div>
       </div>
-      <div class="stat-card">
-        <span class="stat-num" id="statTotal">0</span>
-        <span class="stat-label">cartes au total</span>
-      </div>
-    </div>
+    </details>
+  </section>
 
-    <div class="panel">
-      <h2 class="panel-title">Langages</h2>
-      <div class="chip-row" id="langueChips"></div>
-    </div>
-
-    <div class="panel">
-      <h2 class="panel-title">Niveau</h2>
-      <div class="chip-row" id="niveauChips"></div>
-    </div>
-
-    <div class="panel">
-      <h2 class="panel-title">Taille de session</h2>
-      <div class="chip-row" id="sizeChips">
-        <button class="chip" data-size="10">10</button>
-        <button class="chip chip-active" data-size="20">20</button>
-        <button class="chip" data-size="40">40</button>
-        <button class="chip" data-size="0">Tout</button>
-      </div>
-    </div>
-
-    <button id="btnStart" class="btn-primary btn-big" type="button">Commencer la session</button>
-    <p class="hint" id="startHint"></p>
-
-    <div class="panel">
-      <h2 class="panel-title">Notes de cours</h2>
-      <div class="chip-row" id="notesLinks"></div>
-      <p class="hint hint-left" id="notesEmpty" hidden>Aucun cours importé pour l'instant. Dans Claude Code : <code>/notes-de-cours chemin/du/cours.pdf</code></p>
-    </div>
-
-    <div class="panel">
-      <h2 class="panel-title">Figures interactives</h2>
-      <div class="chip-row" id="figureLinks">
-        <a class="chip chip-link" href="figures/medaillon/medaillon.html" data-light="figures/medaillon/medaillon-light.html">Architecture médaillon</a>
-        <a class="chip chip-link" href="figures/wap/wap.html" data-light="figures/wap/wap-light.html">Write-Audit-Publish</a>
-        <a class="chip chip-link" href="figures/watermark/watermark.html" data-light="figures/watermark/watermark-light.html">Watermark en streaming</a>
-        <a class="chip chip-link" href="figures/bootstrap/bootstrap.html" data-light="figures/bootstrap/bootstrap-light.html">Bootstrap</a>
-      </div>
-    </div>
+  <section id="screenNotesList" class="screen">
+    <h2 class="screen-title">Notes de cours</h2>
+    <p class="screen-sub">Synthèses de tes cours avec schémas, exemples et pièges, liées à leurs cartes.</p>
+    <div id="notesList" class="notes-list"></div>
+    <p class="hint hint-left" id="notesEmpty" hidden>Aucun cours importé pour l'instant. Dans Claude Code : <code>/notes-de-cours chemin/du/cours.pdf</code></p>
   </section>
 
   <!-- ===== ÉCRAN SESSION ===== -->
@@ -153,18 +139,13 @@
       <button id="btnNotesBack" class="icon-btn" type="button" aria-label="Retour">
         <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20Z"/></svg>
       </button>
-      <h2>Notes de cours</h2>
+      <h2 id="noteBarTitle">Toutes les notes</h2>
     </div>
     <article id="noteContent" class="note"></article>
   </section>
 
   <section id="screenStats" class="screen">
-    <div class="session-bar">
-      <button id="btnStatsBack" class="icon-btn" type="button" aria-label="Retour">
-        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20Z"/></svg>
-      </button>
-      <h2>Statistiques</h2>
-    </div>
+    <h2 class="screen-title">Statistiques</h2>
 
     <div class="panel">
       <h3 class="panel-title">Maîtrise par langage</h3>
@@ -190,6 +171,22 @@
   </section>
 
 </main>
+
+<nav class="tabbar" id="tabbar" aria-label="Navigation">
+  <button class="tab" data-tab="home" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 6h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 2v10h12V8H4Zm16-4H7V2h13a2 2 0 0 1 2 2v13h-2V4Z"/></svg>
+    <span>Réviser</span>
+  </button>
+  <button class="tab" data-tab="notesList" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M5 3h11l3 3v15H5V3Zm2 2v14h10V7h-2V5H7Zm2 4h6v2H9V9Zm0 4h6v2H9v-2Z"/></svg>
+    <span>Notes</span>
+  </button>
+  <button class="tab" data-tab="stats" type="button">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M4 20V10h3v10H4Zm6.5 0V4h3v16h-3ZM17 20v-7h3v7h-3Z"/></svg>
+    <span>Stats</span>
+  </button>
+</nav>
+
 
 <script type="module" src="js/app.js"></script>
 </body>

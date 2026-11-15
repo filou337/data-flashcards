@@ -35,12 +35,17 @@ let pendingRating = null;
 // ---------- dom refs ----------
 const $ = (id) => document.getElementById(id);
 const screens = {
-  home: $("screenHome"), session: $("screenSession"), done: $("screenDone"), stats: $("screenStats"), notes: $("screenNotes"),
+  home: $("screenHome"), session: $("screenSession"), done: $("screenDone"), stats: $("screenStats"), notes: $("screenNotes"), notesList: $("screenNotesList"),
 };
 
+const TAB_OF = { home: "home", notesList: "notesList", notes: "notesList", stats: "stats" };
 function showScreen(name) {
   Object.values(screens).forEach(s => s.classList.remove("active"));
   screens[name].classList.add("active");
+  const tab = TAB_OF[name];
+  $("tabbar").hidden = !tab;
+  document.body.classList.toggle("with-tabbar", !!tab);
+  document.querySelectorAll("#tabbar .tab").forEach(b => b.classList.toggle("tab-active", b.dataset.tab === tab));
 }
 
 // ---------- home: filters ----------
@@ -48,26 +53,64 @@ function langColor(id) {
   return (LANGUES.find(l => l.id === id) || {}).color || "var(--ink-faint)";
 }
 
-function renderLangueChips() {
-  const el = $("langueChips");
-  el.innerHTML = "";
-  LANGUES.forEach(l => {
-    const btn = document.createElement("button");
-    btn.className = "chip" + (filters.langues.includes(l.id) ? " chip-active" : "");
-    btn.innerHTML = `<span class="dot" style="background:${l.color}"></span>${l.label}`;
-    btn.addEventListener("click", () => {
-      if (filters.langues.includes(l.id)) {
-        filters.langues = filters.langues.filter(x => x !== l.id);
-      } else {
-        filters.langues = [...filters.langues, l.id];
-      }
-      saveFilters();
-      renderLangueChips();
-      refreshHomeStats();
-    });
-    el.appendChild(btn);
-  });
+// Groupes de decks affichés sur l'accueil ; tout deck absent de cette liste (ex. cours importés) va dans « Cours importés ».
+const DECK_GROUPS = [
+  { titre: "Langages & outils", ids: ["sql", "m", "dax", "pyspark", "scala"] },
+  { titre: "Analyse & statistiques", ids: ["stats", "regression", "analyse"] },
+  { titre: "Ingénierie & qualité", ids: ["dataeng", "tests", "cas-pratique"] },
+];
+function deckGroups() {
+  const known = new Set(DECK_GROUPS.flatMap(g => g.ids));
+  const autres = LANGUES.filter(l => !known.has(l.id)).map(l => l.id);
+  return [...DECK_GROUPS, ...(autres.length ? [{ titre: "Cours importés", ids: autres }] : [])];
 }
+function renderDecks() {
+  const box = $("deckGroups");
+  box.innerHTML = "";
+  const states = getAllCardStates();
+  deckGroups().forEach(g => {
+    const sec = document.createElement("div");
+    sec.className = "deck-group";
+    sec.innerHTML = `<div class="deck-group-title">${g.titre}</div>`;
+    g.ids.forEach(id => {
+      const l = LANGUES.find(x => x.id === id);
+      if (!l) return;
+      const cards = ALL_CARDS.filter(c => c.langue === id && filters.niveaux.includes(c.niveau));
+      const due = cards.filter(c => isDue(states[c.id])).length;
+      const mastered = cards.filter(c => masteryLevel(states[c.id]) === "maitrisee").length;
+      const pct = cards.length ? Math.round(mastered / cards.length * 100) : 0;
+      const on = filters.langues.includes(id);
+      const row = document.createElement("button");
+      row.type = "button";
+      row.className = "deck-row" + (on ? " deck-on" : "");
+      row.setAttribute("aria-pressed", String(on));
+      row.style.setProperty("--deck", l.color);
+      row.innerHTML = `
+        <span class="deck-check" aria-hidden="true"></span>
+        <span class="deck-main">
+          <span class="deck-name">${l.label}</span>
+          <span class="deck-meta">${due} à réviser · ${cards.length} cartes</span>
+          <span class="deck-bar"><span style="width:${pct}%"></span></span>
+        </span>
+        <span class="deck-pct">${pct} %</span>`;
+      row.addEventListener("click", () => {
+        filters.langues = on ? filters.langues.filter(x => x !== id) : [...filters.langues, id];
+        saveFilters();
+        refreshHomeStats();
+      });
+      sec.appendChild(row);
+    });
+    box.appendChild(sec);
+  });
+  const all = LANGUES.every(l => filters.langues.includes(l.id));
+  $("btnToggleAll").textContent = all ? "Tout désélectionner" : "Tout sélectionner";
+}
+$("btnToggleAll").addEventListener("click", () => {
+  const all = LANGUES.every(l => filters.langues.includes(l.id));
+  filters.langues = all ? [] : LANGUES.map(l => l.id);
+  saveFilters();
+  refreshHomeStats();
+});
 
 const NIVEAU_LABELS = { fondamentaux: "Fondamentaux", intermediaire: "Intermédiaire", avance: "Avancé", pro: "Pro" };
 
@@ -101,6 +144,7 @@ function renderSizeChips() {
       filters.size = size;
       saveFilters();
       renderSizeChips();
+      refreshHomeStats();
     };
   });
 }
@@ -116,11 +160,17 @@ function refreshHomeStats() {
   const mastered = fc.filter(c => masteryLevel(states[c.id]) === "maitrisee").length;
   $("statDue").textContent = due;
   $("statMastered").textContent = mastered;
-  $("statTotal").textContent = fc.length;
+  $("statSelected").textContent = fc.length;
+  const willDo = filters.size > 0 ? Math.min(due, filters.size) : due;
+  $("btnStart").textContent = due ? `Commencer · ${willDo} carte${willDo > 1 ? "s" : ""}` : "Commencer la session";
+  $("btnStart").disabled = due === 0;
   $("startHint").textContent = fc.length === 0
-    ? "Aucune carte ne correspond à ces filtres."
-    : (due === 0 ? "Tout est à jour — reviens plus tard, ou élargis les filtres." : "");
+    ? "Sélectionne au moins un deck et un niveau ci-dessous."
+    : (due === 0 ? "Tout est à jour pour cette sélection : reviens plus tard ou ajoute des decks." : "");
+  const niv = filters.niveaux.length === NIVEAUX.length ? "tous niveaux" : filters.niveaux.map(n => NIVEAU_LABELS[n]).join(", ") || "aucun niveau";
+  $("optionsSummary").textContent = `· ${niv} · ${filters.size ? filters.size + " cartes" : "toutes"}`;
   $("streakCount").textContent = getStats().streak || 0;
+  renderDecks();
 }
 
 // ---------- session ----------
@@ -411,8 +461,6 @@ function renderStatsScreen() {
   });
 }
 
-$("btnStats").addEventListener("click", () => { renderStatsScreen(); showScreen("stats"); });
-$("btnStatsBack").addEventListener("click", () => { showScreen("home"); refreshHomeStats(); });
 
 $("btnExport").addEventListener("click", () => {
   const blob = new Blob([exportData()], { type: "application/json" });
@@ -452,7 +500,6 @@ $("btnReset").addEventListener("click", () => {
 // ---------- start ----------
 $("btnStart").addEventListener("click", startSession);
 
-renderLangueChips();
 renderNiveauChips();
 renderSizeChips();
 refreshHomeStats();
@@ -474,7 +521,6 @@ function noteTarget(vers) {
 function reviserDeck(deckId) {
   filters.langues = [deckId];
   saveFilters();
-  renderLangueChips();
   showScreen("home");
   startSession();
   if (!session || !$("screenSession").classList.contains("active")) {
@@ -491,26 +537,37 @@ function openNote(id, chap) {
   if (i >= 0) document.getElementById(`ch-${note.id}-${i}`)?.scrollIntoView({ block: "start" });
   else window.scrollTo(0, 0);
 }
-function renderNotesPanel() {
-  const box = $("notesLinks");
+function renderNotesList() {
+  const box = $("notesList");
   box.innerHTML = "";
   NOTES.forEach((n) => {
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "chip chip-link";
-    b.textContent = n.titre;
-    b.addEventListener("click", () => openNote(n.id));
-    box.appendChild(b);
+    const nbCartes = ALL_CARDS.filter(c => c.langue === n.deck).length;
+    const deck = LANGUES.find(l => l.id === n.deck);
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = "note-card";
+    if (deck) card.style.setProperty("--deck", deck.color);
+    const titre = document.createElement("span"); titre.className = "note-card-title"; titre.textContent = n.titre;
+    const src = document.createElement("span"); src.className = "note-card-src"; src.textContent = n.source || "";
+    const meta = document.createElement("span"); meta.className = "note-card-meta";
+    meta.textContent = `${(n.chapitres || []).length} chapitres · ${nbCartes} cartes`;
+    card.append(titre, src, meta);
+    card.addEventListener("click", () => openNote(n.id));
+    box.appendChild(card);
   });
   $("notesEmpty").hidden = NOTES.length > 0;
 }
-$("btnNotesBack").addEventListener("click", () => { showScreen("home"); refreshHomeStats(); window.scrollTo(0, 0); });
-renderNotesPanel();
+$("btnNotesBack").addEventListener("click", () => { renderNotesList(); showScreen("notesList"); window.scrollTo(0, 0); });
 
-// Figures : ouvrir la version claire si le téléphone est en thème clair.
-if (matchMedia("(prefers-color-scheme: light)").matches) {
-  document.querySelectorAll("#figureLinks a[data-light]").forEach((a) => { a.href = a.dataset.light; });
-}
+// Barre d'onglets
+document.querySelectorAll("#tabbar .tab").forEach(b => b.addEventListener("click", () => {
+  const t = b.dataset.tab;
+  if (t === "home") refreshHomeStats();
+  if (t === "notesList") renderNotesList();
+  if (t === "stats") renderStatsScreen();
+  showScreen(t);
+  window.scrollTo(0, 0);
+}));
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {

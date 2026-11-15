@@ -62,19 +62,6 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 |---|---|---|
 | Big Data : concepts et technologies | `BigDataASR2022.pdf` (146 diapos) | 35 (deck Big Data) |
 
-## Figures interactives
-
-Quatre schémas animés, accessibles depuis l'écran d'accueil (section « Figures interactives ») et disponibles hors-ligne :
-
-| Figure | Concept | Fichier |
-|---|---|---|
-| Architecture médaillon | bronze / silver / gold, quarantaine, rejeu idempotent | `figures/medaillon/` |
-| Write-Audit-Publish | sas de staging, contrôles qualité, publication atomique, archives | `figures/wap/` |
-| Watermark en streaming | heure d'événement, fenêtres de 5 min, retard toléré, « trop tard » | `figures/watermark/` |
-| Bootstrap | tirages avec remise, distribution des moyennes, IC à 95 % par percentiles | `figures/bootstrap/` |
-
-Chaque dossier contient un `build.mjs` qui régénère les pages HTML (`node figures/<nom>/build.mjs` puis `--light`). Ces scripts utilisent le kit du skill Claude Code *anatomy*, qui doit être installé dans `~/.claude/skills/anatomy`.
-
 ## Structure du projet
 
 ```

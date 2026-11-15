@@ -5,6 +5,7 @@ import { cardsPySpark } from "./cards-pyspark.js";
 import { cardsScala } from "./cards-scala.js";
 import { cardsCasPratique } from "./cards-cas-pratique.js";
 import { cardsStats } from "./cards-stats.js";
+import { cardsRegression } from "./cards-regression.js";
 
 export const ALL_CARDS = [
   ...cardsSQL,
@@ -14,6 +15,7 @@ export const ALL_CARDS = [
   ...cardsScala,
   ...cardsCasPratique,
   ...cardsStats,
+  ...cardsRegression,
 ];
 
 export const LANGUES = [
@@ -24,6 +26,7 @@ export const LANGUES = [
   { id: "scala", label: "Scala", color: "#a32a2a" },
   { id: "cas-pratique", label: "Cas pratiques", color: "#5b3fa0" },
   { id: "stats", label: "Stats & tests", color: "#3a7d2c" },
+  { id: "regression", label: "Régression & modélisation", color: "#1f6f9a" },
 ];
 
 export const NIVEAUX = ["fondamentaux", "intermediaire", "avance", "pro"];

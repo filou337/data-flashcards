@@ -6,7 +6,7 @@
 
 *Scanne le QR code avec l'appareil photo du téléphone, puis « Ajouter à l'écran d'accueil ».*
 
-App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation, l'analyse de données, le data engineering et les tests & la qualité des données — 363 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
+App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation, l'analyse de données, le data engineering et les tests & la qualité des données, plus le Big Data — 398 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
 
 Aucune dépendance, aucun build : HTML/CSS/JS pur, données en `localStorage`, installable comme app sur téléphone (PWA).
 

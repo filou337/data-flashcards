@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v14";
+const CACHE_NAME = "data-flashcards-v15";
 const PRECACHE_URLS = [
   "./",
   "index.html",
@@ -17,6 +17,8 @@ const PRECACHE_URLS = [
   "data/cards-scala-par-exemple.js",
   "data/notes/pyspark-pratique.js",
   "data/cards-pyspark-pratique.js",
+  "data/notes/transformers.js",
+  "data/cards-transformers.js",
   "data/index.js",
   "data/cards-sql.js",
   "data/cards-m.js",

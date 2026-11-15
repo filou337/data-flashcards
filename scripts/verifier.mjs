@@ -56,7 +56,7 @@ for (const n of NOTES) {
       if (["texte", "code", "attention", "formule", "renvoi"].includes(b.type) && !b.contenu) E(`${wb} : contenu vide`);
       if (b.type === "liste" && !(b.items || []).length) E(`${wb} : liste vide`);
       if (b.type === "definition" && (!b.terme || !b.contenu)) E(`${wb} : terme ou contenu manquant`);
-      if ((b.type === "exemple" || b.type === "application") && !b.contenu && !b.code) E(`${wb} : ni contenu ni code`);
+      if ((b.type === "exemple" || b.type === "application") && !b.contenu && !b.code && !b.resultat) E(`${wb} : ni contenu, ni code, ni résultat`);
       if (b.type === "tableau") {
         const k = (b.entetes || []).length;
         if (!k) E(`${wb} : entêtes manquantes`);
@@ -67,7 +67,7 @@ for (const n of NOTES) {
         const s = String(b.svg || "").trim();
         if (!s.startsWith("<svg") || !s.endsWith("</svg>")) E(`${wb} : svg doit commencer par <svg et finir par </svg>`);
         if (!/viewBox=/.test(s)) E(`${wb} : viewBox manquant`);
-        if (/<script|on\w+\s*=|javascript:|<foreignObject|href\s*=\s*["']https?:/i.test(s)) E(`${wb} : contenu interdit dans le svg (script, on*=, lien externe, foreignObject)`);
+        if (/<script|<[^>]*\son\w+\s*=|javascript:|<foreignObject|href\s*=\s*["']https?:/i.test(s)) E(`${wb} : contenu interdit dans le svg (script, on*=, lien externe, foreignObject)`);
         if (/\b(width|height)="\d+(px)?"/.test(s.slice(0, s.indexOf(">")))) W(`${wb} : width/height fixes sur <svg> (préférer viewBox seul)`);
         const opens = (s.match(/<(svg|g|text|tspan|defs|marker|title)\b[^>]*?(?<!\/)>/g) || []).length;
         const closes = (s.match(/<\/(svg|g|text|tspan|defs|marker|title)>/g) || []).length;

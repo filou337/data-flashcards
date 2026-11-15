@@ -207,6 +207,28 @@ function renderAnswerContent(card) {
   } else {
     answerEl.textContent = card.back;
   }
+  // Explication et exemple complémentaires (data/extras-*.js)
+  if (card.detail) {
+    const sec = document.createElement("div");
+    sec.className = "a-extra";
+    const h = document.createElement("h4");
+    h.textContent = "Pour comprendre";
+    const p = document.createElement("p");
+    p.textContent = card.detail;
+    sec.append(h, p);
+    answerEl.appendChild(sec);
+  }
+  if (card.example) {
+    const sec = document.createElement("div");
+    sec.className = "a-extra";
+    const h = document.createElement("h4");
+    h.textContent = "Exemple";
+    const pre = document.createElement("pre");
+    pre.className = "a-code a-example";
+    pre.textContent = card.example;
+    sec.append(h, pre);
+    answerEl.appendChild(sec);
+  }
 }
 
 function selectQcmChoice(card, i) {
@@ -236,6 +258,35 @@ function showRatingRow(card) {
   });
   $("ratingRow").hidden = false;
 }
+
+// Raccourcis clavier pendant une session :
+//   Espace / Entrée : voir la réponse
+//   1-4 ou A-D      : choisir une réponse de QCM
+//   1-4             : noter la carte (Encore, Difficile, Bien, Facile) une fois la réponse affichée
+document.addEventListener("keydown", (e) => {
+  if (!$("screenSession").classList.contains("active") || !currentCard) return;
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const tag = (e.target && e.target.tagName) || "";
+  if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+  const key = e.key;
+  if ((key === " " || key === "Enter") && !$("btnReveal").hidden) {
+    e.preventDefault();
+    $("btnReveal").click();
+    return;
+  }
+  if (!$("ratingRow").hidden) {
+    const ratings = { "1": "again", "2": "hard", "3": "good", "4": "easy" };
+    if (ratings[key]) { e.preventDefault(); onRate(ratings[key]); }
+    else if (key === " ") e.preventDefault();   // pas de défilement involontaire
+    return;
+  }
+  if (currentCard.type === "qcm") {
+    const idx = { "1": 0, "2": 1, "3": 2, "4": 3, a: 0, b: 1, c: 2, d: 3 }[key.toLowerCase()];
+    const buttons = $("qcmChoices").querySelectorAll(".qcm-choice");
+    if (idx !== undefined && buttons[idx] && !buttons[idx].disabled) { e.preventDefault(); buttons[idx].click(); }
+    else if (key === " ") e.preventDefault();
+  }
+});
 
 $("ratingRow").addEventListener("click", (e) => {
   const btn = e.target.closest(".rate-btn");

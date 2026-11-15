@@ -82,3 +82,13 @@ Chaque fichier `data/cards-*.js` exporte un tableau d'objets. Trois formats :
 ```
 
 `langue` doit correspondre à un id de `LANGUES` dans `data/index.js` ; `niveau` à `fondamentaux | intermediaire | avance | pro`.
+
+Deux champs optionnels enrichissent le verso : `detail` (bloc « Pour comprendre ») et `example` (bloc « Exemple », affiché comme du code). Pour les decks d'origine, ils sont rangés à part dans `data/extras-*.js` (un objet `{ id: { detail, example } }` par deck) et fusionnés aux cartes dans `data/index.js`.
+
+## Raccourcis clavier (session)
+
+| Touche | Action |
+|---|---|
+| Espace / Entrée | Voir la réponse |
+| 1 à 4 ou A à D | Choisir une réponse de QCM |
+| 1 / 2 / 3 / 4 | Noter : Encore / Difficile / Bien / Facile |

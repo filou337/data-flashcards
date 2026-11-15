@@ -9,8 +9,17 @@ import { cardsRegression } from "./cards-regression.js";
 import { cardsAnalyse } from "./cards-analyse.js";
 import { cardsDataEng } from "./cards-dataeng.js";
 import { cardsTests } from "./cards-tests.js";
+import { extrasSQL } from "./extras-sql.js";
+import { extrasM } from "./extras-m.js";
+import { extrasDAX } from "./extras-dax.js";
+import { extrasPySpark } from "./extras-pyspark.js";
+import { extrasScala } from "./extras-scala.js";
+import { extrasCasPratique } from "./extras-cas-pratique.js";
 
-export const ALL_CARDS = [
+// Explications (detail) et exemples (example) ajoutés aux cartes, par id.
+export const EXTRAS = { ...extrasSQL, ...extrasM, ...extrasDAX, ...extrasPySpark, ...extrasScala, ...extrasCasPratique };
+
+const BASE_CARDS = [
   ...cardsSQL,
   ...cardsM,
   ...cardsDAX,
@@ -23,6 +32,8 @@ export const ALL_CARDS = [
   ...cardsDataEng,
   ...cardsTests,
 ];
+
+export const ALL_CARDS = BASE_CARDS.map((c) => (EXTRAS[c.id] ? { ...c, ...EXTRAS[c.id] } : c));
 
 export const LANGUES = [
   { id: "sql", label: "SQL", color: "#2a5db0" },

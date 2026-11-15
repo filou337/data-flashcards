@@ -66,6 +66,7 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 | PySpark pratique : l'aide-mémoire du data engineer | `MPRA_paper_113562.pdf` (183 pages) | 22 (ajoutées au deck PySpark) |
 | Comprendre les Transformers | `Transformers_Presentation.pdf` (22 diapos, projet M2) | 18 (deck Transformers & LLM) |
 | Data Mining : clustering, classification, règles d'association | `Cours-Data-Mining.pdf` (325 diapos) | 26 (deck Data Mining) |
+| Python : les bases solides pour la data | `cours-python.pdf` (402 pages) | 30 (deck Python) |
 
 ## Structure du projet
 

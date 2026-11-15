@@ -8,6 +8,7 @@ import { cardsStats } from "./cards-stats.js";
 import { cardsRegression } from "./cards-regression.js";
 import { cardsAnalyse } from "./cards-analyse.js";
 import { cardsDataEng } from "./cards-dataeng.js";
+import { cardsTests } from "./cards-tests.js";
 
 export const ALL_CARDS = [
   ...cardsSQL,
@@ -20,6 +21,7 @@ export const ALL_CARDS = [
   ...cardsRegression,
   ...cardsAnalyse,
   ...cardsDataEng,
+  ...cardsTests,
 ];
 
 export const LANGUES = [
@@ -33,6 +35,7 @@ export const LANGUES = [
   { id: "regression", label: "Régression & modélisation", color: "#1f6f9a" },
   { id: "analyse", label: "Analyse de données", color: "#8a3f7a" },
   { id: "dataeng", label: "Data engineering", color: "#5a6170" },
+  { id: "tests", label: "Tests & qualité", color: "#a8452f" },
 ];
 
 export const NIVEAUX = ["fondamentaux", "intermediaire", "avance", "pro"];

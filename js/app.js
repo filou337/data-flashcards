@@ -405,6 +405,11 @@ renderSizeChips();
 refreshHomeStats();
 showScreen("home");
 
+// Figures : ouvrir la version claire si le téléphone est en thème clair.
+if (matchMedia("(prefers-color-scheme: light)").matches) {
+  document.querySelectorAll("#figureLinks a[data-light]").forEach((a) => { a.href = a.dataset.light; });
+}
+
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("sw.js").catch(() => {});

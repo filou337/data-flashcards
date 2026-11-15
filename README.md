@@ -37,6 +37,19 @@ L'app s'ouvre alors comme une app native, fonctionne hors-ligne (service worker)
 
 La progression (état de répétition espacée de chaque carte, streak, historique) est stockée en `localStorage`, **propre à chaque appareil/navigateur** — pas de compte, pas de serveur. Pour transférer ta progression d'un appareil à l'autre : écran Statistiques → **Exporter ma progression** (fichier JSON), puis **Importer** sur l'autre appareil.
 
+## Figures interactives
+
+Quatre schémas animés, accessibles depuis l'écran d'accueil (section « Figures interactives ») et disponibles hors-ligne :
+
+| Figure | Concept | Fichier |
+|---|---|---|
+| Architecture médaillon | bronze / silver / gold, quarantaine, rejeu idempotent | `figures/medaillon/` |
+| Write-Audit-Publish | sas de staging, contrôles qualité, publication atomique, archives | `figures/wap/` |
+| Watermark en streaming | heure d'événement, fenêtres de 5 min, retard toléré, « trop tard » | `figures/watermark/` |
+| Bootstrap | tirages avec remise, distribution des moyennes, IC à 95 % par percentiles | `figures/bootstrap/` |
+
+Chaque dossier contient un `build.mjs` qui régénère les pages HTML (`node figures/<nom>/build.mjs` puis `--light`). Ces scripts utilisent le kit du skill Claude Code *anatomy*, qui doit être installé dans `~/.claude/skills/anatomy`.
+
 ## Structure du projet
 
 ```

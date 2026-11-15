@@ -137,6 +137,7 @@ main#app { max-width: 640px; margin: 0 auto; padding: 1rem 1rem 3rem; }
   border-radius: 999px; padding: .45rem .9rem; font-size: .87rem; cursor: pointer; font-weight: 600;
 }
 .chip .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: .4rem; }
+.chip-link { text-decoration: none; display: inline-block; }
 .chip-active { border-color: var(--accent); background: var(--accent-soft); color: var(--accent-ink); }
 
 .btn-primary {

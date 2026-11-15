@@ -37,6 +37,25 @@ L'app s'ouvre alors comme une app native, fonctionne hors-ligne (service worker)
 
 La progression (état de répétition espacée de chaque carte, streak, historique) est stockée en `localStorage`, **propre à chaque appareil/navigateur** — pas de compte, pas de serveur. Pour transférer ta progression d'un appareil à l'autre : écran Statistiques → **Exporter ma progression** (fichier JSON), puis **Importer** sur l'autre appareil.
 
+## Notes de cours (agent `/notes-de-cours`)
+
+Un skill Claude Code transforme un cours PDF en **note de cours** (écran « Notes de cours » de l'app : synthèse, schémas, exemples, applications, pièges, « à retenir ») et en **deck de flashcards**, sans dupliquer ce qui existe déjà :
+
+```
+/notes-de-cours docs_divers/mon-cours.pdf
+```
+
+1. Il extrait le PDF (`pdftotext`, et les pages à schémas en images).
+2. Il fait l'inventaire de l'existant (`node scripts/inventaire.mjs --cherche "…"`) et classe chaque notion : nouvelle, déjà couverte (simple renvoi vers le deck ou la note existante) ou partiellement couverte (seulement le complément).
+3. Il écrit `data/notes/<id>.js` et `data/cards-<id>.js`, les enregistre (`data/notes/index.js`, `data/index.js`, `sw.js`).
+4. Il vérifie avec `node scripts/verifier.mjs` (format, schémas SVG sûrs, fichiers pré-cachés, quasi-doublons entre decks) puis contrôle le rendu.
+
+Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des notes et des schémas : `.claude/skills/notes-de-cours/format.md`.
+
+| Note | Source | Cartes |
+|---|---|---|
+| *(aucune pour l'instant)* | | |
+
 ## Figures interactives
 
 Quatre schémas animés, accessibles depuis l'écran d'accueil (section « Figures interactives ») et disponibles hors-ligne :

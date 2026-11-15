@@ -74,6 +74,12 @@
     <p class="hint" id="startHint"></p>
 
     <div class="panel">
+      <h2 class="panel-title">Notes de cours</h2>
+      <div class="chip-row" id="notesLinks"></div>
+      <p class="hint hint-left" id="notesEmpty" hidden>Aucun cours importé pour l'instant. Dans Claude Code : <code>/notes-de-cours chemin/du/cours.pdf</code></p>
+    </div>
+
+    <div class="panel">
       <h2 class="panel-title">Figures interactives</h2>
       <div class="chip-row" id="figureLinks">
         <a class="chip chip-link" href="figures/medaillon/medaillon.html" data-light="figures/medaillon/medaillon-light.html">Architecture médaillon</a>
@@ -142,6 +148,16 @@
   </section>
 
   <!-- ===== ÉCRAN STATS ===== -->
+  <section id="screenNotes" class="screen">
+    <div class="session-bar">
+      <button id="btnNotesBack" class="icon-btn" type="button" aria-label="Retour">
+        <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20Z"/></svg>
+      </button>
+      <h2>Notes de cours</h2>
+    </div>
+    <article id="noteContent" class="note"></article>
+  </section>
+
   <section id="screenStats" class="screen">
     <div class="session-bar">
       <button id="btnStatsBack" class="icon-btn" type="button" aria-label="Retour">

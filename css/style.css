@@ -253,3 +253,57 @@ pre.q-code, pre.a-code {
   .rating-row { grid-template-columns: repeat(4, 1fr); }
   main#app { padding-top: 1.5rem; }
 }
+
+/* ---------- notes de cours ---------- */
+.hint-left { text-align: left; }
+.hint code, .note code { font-family: var(--font-mono); font-size: .85em; background: var(--code-bg); padding: .05em .3em; border-radius: 4px; }
+.note { line-height: 1.6; }
+.note-head { margin-bottom: 1.2rem; }
+.note-title { font-size: 1.5rem; margin-bottom: .25rem; }
+.note-source { color: var(--ink-faint); font-size: .82rem; margin: 0 0 .6rem; }
+.note-resume { color: var(--ink-soft); margin: .3rem 0; }
+.note-prereq { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; margin-bottom: 1rem; }
+.note-prereq-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-faint); margin-right: .2rem; }
+.note-toc { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px; padding: .8rem 1rem; margin-bottom: 1.4rem; }
+.note-toc ol { margin: 0; padding-left: 1.2rem; }
+.note-toc a { color: var(--accent); text-decoration: none; }
+.note-chapter { margin-bottom: 1.8rem; scroll-margin-top: 4.5rem; }
+.note-h2 { font-size: 1.2rem; margin: 0 0 .4rem; padding-bottom: .3rem; border-bottom: 2px solid var(--accent-soft); }
+.note-objectif { color: var(--ink-faint); font-style: italic; font-size: .9rem; margin: 0 0 .7rem; }
+.note-p { margin: .5rem 0; color: var(--ink); }
+.note-list { margin: .5rem 0; padding-left: 1.3rem; }
+.note-list li { margin: .2rem 0; }
+.note-box { border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: 10px; background: var(--bg-raised); padding: .7rem .9rem; margin: .8rem 0; }
+.note-box .note-p { margin: .3rem 0; }
+.note-box-label { font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-bottom: .2rem; }
+.note-attention { border-left-color: var(--rate-again); }
+.note-attention .note-box-label { color: var(--rate-again); }
+.note-application { border-left-color: var(--rate-good); }
+.note-application .note-box-label { color: var(--rate-good); }
+.note-renvoi { border-left-color: var(--ink-faint); border-style: dashed; border-left-style: solid; }
+.note-renvoi .note-box-label { color: var(--ink-faint); }
+.note-retenir { border-left-width: 6px; }
+.note-sub { font-size: .75rem; color: var(--ink-faint); margin-top: .5rem; }
+.note-code { margin-top: .4rem; font-size: .8rem; line-height: 1.45; }
+.note-formula { font-family: var(--font-mono); font-size: 1rem; text-align: center; padding: .5rem; overflow-x: auto; }
+.note-goto { margin-top: .4rem; }
+.note-schema { margin: 1rem 0; text-align: center; }
+.note-svg { background: var(--bg-raised); border: 1px solid var(--border); border-radius: 12px; padding: .8rem; overflow-x: auto; color: var(--ink-soft); }
+.note-svg svg { max-width: 100%; height: auto; display: block; margin: 0 auto; font-family: var(--font-body); }
+.note-schema figcaption { font-size: .82rem; color: var(--ink-faint); margin-top: .4rem; }
+.note-table-wrap { overflow-x: auto; margin: .8rem 0; }
+.note-table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+.note-table th, .note-table td { border: 1px solid var(--border); padding: .4rem .55rem; text-align: left; vertical-align: top; }
+.note-table th { background: var(--bg-sunken); }
+.note-review { margin-top: .5rem; }
+/* Classes à utiliser dans les schémas SVG (suivent le thème clair/sombre) */
+.note-svg .s-box { fill: var(--bg-sunken); stroke: var(--border-strong); stroke-width: 1.5; }
+.note-svg .s-acc { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; }
+.note-svg .s-warn { fill: var(--rate-again-bg); stroke: var(--rate-again); stroke-width: 1.5; }
+.note-svg .s-ok { fill: var(--rate-good-bg); stroke: var(--rate-good); stroke-width: 1.5; }
+.note-svg .s-line { fill: none; stroke: var(--ink-soft); stroke-width: 1.5; }
+.note-svg .s-dash { fill: none; stroke: var(--ink-faint); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.note-svg .s-txt { fill: var(--ink); font-size: 13px; }
+.note-svg .s-sub { fill: var(--ink-faint); font-size: 11px; }
+.note-svg .s-bold { fill: var(--ink); font-size: 13px; font-weight: 700; }
+.note-svg .s-arrow { fill: var(--ink-soft); }

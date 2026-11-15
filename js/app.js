@@ -1,4 +1,6 @@
 import { ALL_CARDS, LANGUES, NIVEAUX } from "../data/index.js";
+import { NOTES } from "../data/notes/index.js";
+import { renderNote } from "./notes.js";
 import { schedule, isDue, masteryLevel, todayISO } from "./srs.js";
 import {
   getOrCreateCardState, recordReview, getStats, getAllCardStates,
@@ -33,7 +35,7 @@ let pendingRating = null;
 // ---------- dom refs ----------
 const $ = (id) => document.getElementById(id);
 const screens = {
-  home: $("screenHome"), session: $("screenSession"), done: $("screenDone"), stats: $("screenStats"),
+  home: $("screenHome"), session: $("screenSession"), done: $("screenDone"), stats: $("screenStats"), notes: $("screenNotes"),
 };
 
 function showScreen(name) {
@@ -455,6 +457,55 @@ renderNiveauChips();
 renderSizeChips();
 refreshHomeStats();
 showScreen("home");
+
+// ---------- notes de cours ----------
+function noteTarget(vers) {
+  if (!vers) return null;
+  if (vers.startsWith("note:")) {
+    const [id, chap] = vers.slice(5).split("#");
+    const note = NOTES.find((n) => n.id === id);
+    if (!note) return null;
+    return { label: note.titre, go: () => openNote(id, chap) };
+  }
+  const deck = LANGUES.find((l) => l.id === vers);
+  if (deck) return { label: "Cartes · " + deck.label, go: () => reviserDeck(deck.id) };
+  return null;
+}
+function reviserDeck(deckId) {
+  filters.langues = [deckId];
+  saveFilters();
+  renderLangueChips();
+  showScreen("home");
+  startSession();
+  if (!session || !$("screenSession").classList.contains("active")) {
+    refreshHomeStats();
+    $("startHint").textContent = "Aucune carte à réviser aujourd'hui pour ce deck : reviens demain !";
+  }
+}
+function openNote(id, chap) {
+  const note = NOTES.find((n) => n.id === id);
+  if (!note) return;
+  renderNote(note, $("noteContent"), { resolve: noteTarget, reviser: reviserDeck });
+  showScreen("notes");
+  const i = chap === undefined ? -1 : (note.chapitres || []).findIndex((c, k) => c.id === chap || String(k) === chap);
+  if (i >= 0) document.getElementById(`ch-${note.id}-${i}`)?.scrollIntoView({ block: "start" });
+  else window.scrollTo(0, 0);
+}
+function renderNotesPanel() {
+  const box = $("notesLinks");
+  box.innerHTML = "";
+  NOTES.forEach((n) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip chip-link";
+    b.textContent = n.titre;
+    b.addEventListener("click", () => openNote(n.id));
+    box.appendChild(b);
+  });
+  $("notesEmpty").hidden = NOTES.length > 0;
+}
+$("btnNotesBack").addEventListener("click", () => { showScreen("home"); refreshHomeStats(); window.scrollTo(0, 0); });
+renderNotesPanel();
 
 // Figures : ouvrir la version claire si le téléphone est en thème clair.
 if (matchMedia("(prefers-color-scheme: light)").matches) {

@@ -14,6 +14,7 @@ import { cardsDaxPowerPivot } from "./cards-dax-power-pivot.js";
 import { cardsScalaParExemple } from "./cards-scala-par-exemple.js";
 import { cardsPysparkPratique } from "./cards-pyspark-pratique.js";
 import { cardsTransformers } from "./cards-transformers.js";
+import { cardsDataMining } from "./cards-data-mining.js";
 import { extrasSQL } from "./extras-sql.js";
 import { extrasM } from "./extras-m.js";
 import { extrasDAX } from "./extras-dax.js";
@@ -41,6 +42,7 @@ const BASE_CARDS = [
   ...cardsScalaParExemple,
   ...cardsPysparkPratique,
   ...cardsTransformers,
+  ...cardsDataMining,
 ];
 
 export const ALL_CARDS = BASE_CARDS.map((c) => (EXTRAS[c.id] ? { ...c, ...EXTRAS[c.id] } : c));
@@ -59,6 +61,7 @@ export const LANGUES = [
   { id: "tests", label: "Tests & qualité", color: "#a8452f" },
   { id: "big-data", label: "Big Data", color: "#6b5a1e" },
   { id: "transformers", label: "Transformers & LLM", color: "#3d4f9a" },
+  { id: "data-mining", label: "Data Mining", color: "#7a3b5c" },
 ];
 
 export const NIVEAUX = ["fondamentaux", "intermediaire", "avance", "pro"];

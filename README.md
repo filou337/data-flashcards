@@ -65,6 +65,7 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 | Scala par l'exemple | `ScalaByExample-fr_FR.pdf` (101 pages) | 23 (ajoutées au deck Scala) |
 | PySpark pratique : l'aide-mémoire du data engineer | `MPRA_paper_113562.pdf` (183 pages) | 22 (ajoutées au deck PySpark) |
 | Comprendre les Transformers | `Transformers_Presentation.pdf` (22 diapos, projet M2) | 18 (deck Transformers & LLM) |
+| Data Mining : clustering, classification, règles d'association | `Cours-Data-Mining.pdf` (325 diapos) | 26 (deck Data Mining) |
 
 ## Structure du projet
 

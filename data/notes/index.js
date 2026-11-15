@@ -8,6 +8,7 @@ import { note as daxPowerPivot } from "./dax-power-pivot.js";
 import { note as scalaParExemple } from "./scala-par-exemple.js";
 import { note as pysparkPratique } from "./pyspark-pratique.js";
 import { note as transformers } from "./transformers.js";
+import { note as dataMining } from "./data-mining.js";
 
 export const NOTES = [
   bigData,
@@ -15,4 +16,5 @@ export const NOTES = [
   scalaParExemple,
   pysparkPratique,
   transformers,
+  dataMining,
 ];

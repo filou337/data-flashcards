@@ -8,11 +8,18 @@ import {
 // ---------- state ----------
 const FILTER_KEY = "flashcards-filters-v1";
 function loadFilters() {
+  const allIds = LANGUES.map(l => l.id);
   try {
     const raw = localStorage.getItem(FILTER_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const f = JSON.parse(raw);
+      // Coche automatiquement les decks ajoutés depuis la dernière visite.
+      const known = f.knownLangues || ["sql", "m", "dax", "pyspark", "scala", "cas-pratique"];
+      const added = allIds.filter(id => !known.includes(id));
+      return { ...f, langues: [...f.langues, ...added], knownLangues: allIds };
+    }
   } catch {}
-  return { langues: LANGUES.map(l => l.id), niveaux: [...NIVEAUX], size: 20 };
+  return { langues: allIds, niveaux: [...NIVEAUX], size: 20, knownLangues: allIds };
 }
 function saveFilters() {
   localStorage.setItem(FILTER_KEY, JSON.stringify(filters));

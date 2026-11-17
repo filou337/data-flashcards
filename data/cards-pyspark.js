@@ -146,7 +146,7 @@ export const cardsPySpark = [
   },
   {
     id: "ps-p2-2", langue: "pyspark", niveau: "pro", type: "flip",
-    front: "Architecture medallion : à quoi correspondent bronze / silver / gold ?",
-    back: "Bronze : données brutes telles que reçues. Silver : nettoyées, types corrects, dédupliquées. Gold : agrégées, prêtes pour la consommation BI/DAX."
+    front: "En PySpark + Delta, quelles opérations typiques à chaque couche bronze → silver → gold ?",
+    back: "Bronze : spark.read brut + colonne technique (_charge_le, fichier source), écriture en mode append, rien n'est filtré. Silver : relecture du bronze, cast des types, dropDuplicates sur la clé, filtres de validité, jointures de référentiels (souvent un MERGE pour l'incrémental). Gold : groupBy / agg et modèles en étoile, écrits en overwrite ou par partition, prêts pour la BI/DAX."
   },
 ];

@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v18";
+const CACHE_NAME = "data-flashcards-v19";
 const PRECACHE_URLS = [
   "./",
   "index.html",

@@ -56,7 +56,7 @@ function langColor(id) {
 // Groupes de decks affichés sur l'accueil ; tout deck absent de cette liste (ex. cours importés) va dans « Cours importés ».
 const DECK_GROUPS = [
   { titre: "Langages & outils", ids: ["sql", "python", "pyspark", "scala", "dax", "m"] },
-  { titre: "Analyse, statistiques & IA", ids: ["stats", "regression", "analyse", "data-mining", "transformers"] },
+  { titre: "Analyse, statistiques & IA", ids: ["stats", "regression", "analyse", "ml-python", "data-mining", "transformers"] },
   { titre: "Ingénierie & qualité", ids: ["dataeng", "big-data", "tests", "cas-pratique"] },
 ];
 function deckGroups() {

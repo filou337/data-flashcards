@@ -6,7 +6,7 @@
 
 *Scanne le QR code avec l'appareil photo du téléphone, puis « Ajouter à l'écran d'accueil ».*
 
-App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation, l'analyse de données, le data engineering et les tests & la qualité des données, plus le Big Data, le Data Mining, Python et les Transformers — 536 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
+App de flashcards à répétition espacée (SM-2, façon Anki) pour réviser SQL, Power Query M, DAX, PySpark, Scala, les statistiques (tests, A/B tests), la régression / modélisation, l'analyse de données, le data engineering et les tests & la qualité des données, plus le Big Data, le Data Mining, Python et les Transformers — 592 cartes couvrant les fondamentaux jusqu'au niveau pro, plus les deux cas pratiques bout-en-bout (SCD2, tarification promotionnelle).
 
 Aucune dépendance, aucun build : HTML/CSS/JS pur, données en `localStorage`, installable comme app sur téléphone (PWA).
 
@@ -67,6 +67,8 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 | Comprendre les Transformers | `Transformers_Presentation.pdf` (22 diapos, projet M2) | 18 (deck Transformers & LLM) |
 | Data Mining : clustering, classification, règles d'association | `Cours-Data-Mining.pdf` (325 diapos) | 26 (deck Data Mining) |
 | Python : les bases solides pour la data | `cours-python.pdf` (402 pages) | 30 (deck Python) |
+| Écosystème Hadoop en pratique : YARN, Hive, HBase, Kafka, NiFi, Elasticsearch | `Cours_Big_Data_1.pdf` à `_6.pdf` (197 diapos, M2) | 28 (ajoutées au deck Big Data) |
+| Préparer les données pour le machine learning avec scikit-learn | `Machine Learning with Python.pdf` (169 pages, chap. 1 à 10) | 28 (deck ML : préparer les données) |
 | Fiches visuelles : données, tests et modèles | synthèse des decks Stats, Régression, Data engineering | — (14 schémas à mémoriser) |
 
 Chaque note se termine par une **Synthèse visuelle** : un schéma qui résume tout le cours, à redessiner de mémoire.

@@ -11,14 +11,18 @@ import { note as transformers } from "./transformers.js";
 import { note as dataMining } from "./data-mining.js";
 import { note as python } from "./python.js";
 import { note as fichesVisuelles } from "./fiches-visuelles.js";
+import { note as ecosystemeHadoop } from "./ecosysteme-hadoop.js";
+import { note as mlPreparation } from "./ml-preparation.js";
 
 export const NOTES = [
   fichesVisuelles,
   bigData,
+  ecosystemeHadoop,
   daxPowerPivot,
   scalaParExemple,
   pysparkPratique,
   transformers,
   dataMining,
   python,
+  mlPreparation,
 ];

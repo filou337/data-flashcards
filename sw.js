@@ -1,4 +1,4 @@
-const CACHE_NAME = "data-flashcards-v20";
+const CACHE_NAME = "data-flashcards-v21";
 const PRECACHE_URLS = [
   "./",
   "index.html",
@@ -24,6 +24,10 @@ const PRECACHE_URLS = [
   "data/cards-data-mining.js",
   "data/notes/python.js",
   "data/cards-python.js",
+  "data/notes/ecosysteme-hadoop.js",
+  "data/cards-ecosysteme-hadoop.js",
+  "data/notes/ml-preparation.js",
+  "data/cards-ml-python.js",
   "data/index.js",
   "data/cards-sql.js",
   "data/cards-m.js",

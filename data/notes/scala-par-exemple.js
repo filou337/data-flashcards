@@ -337,6 +337,13 @@ Await.result(panier, 10.seconds)` },
       ],
     },
   ],
+  synthese: [
+    { svg: `<svg viewBox="0 0 360 286" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Scala en une image : quatre piliers">
+  <defs><marker id="fl-syn-scala" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" class="s-arrow"/></marker></defs>
+  <rect x="6" y="6" width="168" height="96" rx="8" class="s-box"/><text x="90" y="35.5" text-anchor="middle" class="s-bold">Expressions</text><text x="90" y="50.5" text-anchor="middle" class="s-sub">tout renvoie une valeur</text><text x="90" y="65.5" text-anchor="middle" class="s-sub">modèle de substitution</text><text x="90" y="80.5" text-anchor="middle" class="s-sub">val / def / lazy val</text><rect x="186" y="6" width="168" height="96" rx="8" class="s-box"/><text x="270" y="35.5" text-anchor="middle" class="s-bold">Fonctions</text><text x="270" y="50.5" text-anchor="middle" class="s-sub">fonctions = valeurs</text><text x="270" y="65.5" text-anchor="middle" class="s-sub">map, filter, foldLeft</text><text x="270" y="80.5" text-anchor="middle" class="s-sub">@tailrec : pile constante</text><rect x="6" y="150" width="168" height="96" rx="8" class="s-box"/><text x="90" y="179.5" text-anchor="middle" class="s-bold">Types</text><text x="90" y="194.5" text-anchor="middle" class="s-sub">class, object, trait</text><text x="90" y="209.5" text-anchor="middle" class="s-sub">génériques, bornes</text><text x="90" y="224.5" text-anchor="middle" class="s-sub">variance +A / −A</text><rect x="186" y="150" width="168" height="96" rx="8" class="s-box"/><text x="270" y="179.5" text-anchor="middle" class="s-bold">Données et effets</text><text x="270" y="194.5" text-anchor="middle" class="s-sub">List : x :: xs, Nil</text><text x="270" y="209.5" text-anchor="middle" class="s-sub">LazyList, itérateurs</text><text x="270" y="224.5" text-anchor="middle" class="s-sub">implicites, Future</text><rect x="60" y="110" width="240" height="32" rx="8" class="s-acc"/><text x="180" y="130" text-anchor="middle" class="s-bold">Scala : objet + fonctionnel</text><text x="180" y="274" text-anchor="middle" class="s-sub">Préférer val, l'immuabilité et la récursion terminale</text>
+</svg>`,
+      legende: "Les quatre piliers du cours autour de l'idée centrale : Scala mélange objets et fonctions." },
+  ],
   aRetenir: [
     "Scala permet le style impératif et le style fonctionnel ; le livre pousse vers le fonctionnel (valeurs immuables, expressions, récursion).",
     "Appel par valeur : l'argument est calculé une fois avant l'appel. Appel par nom (`=> T`) : à chaque usage, jamais s'il n'est pas utilisé.",

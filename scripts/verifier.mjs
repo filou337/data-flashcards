@@ -63,7 +63,13 @@ for (const n of NOTES) {
         (b.lignes || []).forEach((r, x) => { if (r.length !== k) E(`${wb} : ligne ${x} a ${r.length} cellules au lieu de ${k}`); });
       }
       if (b.type === "renvoi") { if (!b.vers) E(`${wb} : champ « vers » manquant`); else if (!resolvable(b.vers)) E(`${wb} : cible « ${b.vers} » introuvable`); }
-      if (b.type === "schema") {
+      if (b.type === "schema") checkSvg(b, wb);
+    });
+  });
+  (n.synthese || []).forEach((b, j) => checkSvg(b, `${where} > synthèse ${j}`));
+  if (!(n.aRetenir || []).length) W(`${where} : pas de section « À retenir »`);
+}
+function checkSvg(b, wb) {
         const s = String(b.svg || "").trim();
         if (!s.startsWith("<svg") || !s.endsWith("</svg>")) E(`${wb} : svg doit commencer par <svg et finir par </svg>`);
         if (!/viewBox=/.test(s)) E(`${wb} : viewBox manquant`);
@@ -73,10 +79,7 @@ for (const n of NOTES) {
         const closes = (s.match(/<\/(svg|g|text|tspan|defs|marker|title)>/g) || []).length;
         if (opens !== closes) E(`${wb} : balises svg mal fermées (${opens} ouvertes, ${closes} fermées)`);
         if (!/class="s-/.test(s)) W(`${wb} : aucune classe s-* (le schéma ne suivra pas le thème clair/sombre)`);
-      }
-    });
-  });
-  if (!(n.aRetenir || []).length) W(`${where} : pas de section « À retenir »`);
+        if (!b.legende) W(`${wb} : schéma sans légende`);
 }
 // notes présentes sur disque mais non enregistrées
 for (const f of readdirSync(new URL("data/notes/", ROOT))) {

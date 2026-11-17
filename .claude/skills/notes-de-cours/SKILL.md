@@ -50,6 +50,7 @@ Fichier : `data/notes/<id>.js` (id court en kebab-case, ex. `big-data`, `data-mi
 - **Les 80 % utiles.** Garde ce qui sert à comprendre, à pratiquer et à passer un entretien. Laisse tomber l'historique, les anecdotes, les détails de version.
 - **Chaque notion importante** = une explication courte (`texte` ou `definition`) + au moins un `exemple` concret (données, code, chiffres) + quand c'est pertinent une `application` (cas métier réel) et un `attention` (le piège classique).
 - **Schémas** (`schema`, SVG) quand une image vaut mieux qu'un paragraphe : architecture, flux de données, étapes d'un algorithme, comparaison visuelle. Pas de schéma décoratif. Suis les règles SVG de format.md (viewBox, classes `s-*`, texte lisible à 360 px de large).
+- **Synthèse visuelle** (champ `synthese` de la note) : toujours un schéma final qui résume toute la note en une image (processus de bout en bout ou carte des notions), lisible d'un coup d'œil et facile à redessiner de mémoire.
 - **Formules** : la formule (`formule`), puis ce que signifie chaque terme et un calcul numérique d'exemple.
 - **Exactitude** : tout chiffre, toute sortie de code et tout calcul affichés doivent être justes. Vérifie les calculs et, quand c'est possible, exécute le code d'exemple (python3, node, sqlite3, duckdb s'il est installé) dans le scratchpad.
 - **Langue** : français clair, phrases courtes, le vocabulaire technique en anglais quand c'est l'usage (shuffle, partition, overfitting), défini à sa première apparition.

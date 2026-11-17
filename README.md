@@ -67,6 +67,9 @@ Instructions de l'agent : `.claude/skills/notes-de-cours/SKILL.md` ; format des 
 | Comprendre les Transformers | `Transformers_Presentation.pdf` (22 diapos, projet M2) | 18 (deck Transformers & LLM) |
 | Data Mining : clustering, classification, règles d'association | `Cours-Data-Mining.pdf` (325 diapos) | 26 (deck Data Mining) |
 | Python : les bases solides pour la data | `cours-python.pdf` (402 pages) | 30 (deck Python) |
+| Fiches visuelles : données, tests et modèles | synthèse des decks Stats, Régression, Data engineering | — (14 schémas à mémoriser) |
+
+Chaque note se termine par une **Synthèse visuelle** : un schéma qui résume tout le cours, à redessiner de mémoire.
 
 ## Structure du projet
 

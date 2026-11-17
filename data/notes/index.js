@@ -10,8 +10,10 @@ import { note as pysparkPratique } from "./pyspark-pratique.js";
 import { note as transformers } from "./transformers.js";
 import { note as dataMining } from "./data-mining.js";
 import { note as python } from "./python.js";
+import { note as fichesVisuelles } from "./fiches-visuelles.js";
 
 export const NOTES = [
+  fichesVisuelles,
   bigData,
   daxPowerPivot,
   scalaParExemple,

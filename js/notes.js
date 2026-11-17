@@ -122,10 +122,12 @@ export function renderNote(note, container, ctx) {
     const toc = el("nav", "note-toc");
     toc.appendChild(el("div", "panel-title", "Sommaire"));
     const ol = el("ol");
-    chapitres.forEach((c, i) => {
+    const entrees = chapitres.map((c, i) => [c.titre, `ch-${note.id}-${i}`]);
+    if (note.synthese && note.synthese.length) entrees.push(["Synthèse visuelle", `syn-${note.id}`]);
+    entrees.forEach(([titre, cible]) => {
       const li = el("li");
-      const a = el("a", "", esc(c.titre));
-      a.href = "#"; a.addEventListener("click", (e) => { e.preventDefault(); document.getElementById(`ch-${note.id}-${i}`)?.scrollIntoView({ behavior: "smooth", block: "start" }); });
+      const a = el("a", "", esc(titre));
+      a.href = "#"; a.addEventListener("click", (e) => { e.preventDefault(); document.getElementById(cible)?.scrollIntoView({ behavior: "smooth", block: "start" }); });
       li.appendChild(a); ol.appendChild(li);
     });
     toc.appendChild(ol);
@@ -148,6 +150,16 @@ export function renderNote(note, container, ctx) {
     note.aRetenir.forEach((it) => ul.appendChild(el("li", "", inline(it))));
     box.appendChild(ul);
     container.appendChild(box);
+  }
+
+  // Synthèse visuelle : le schéma qui résume toute la note, à redessiner de mémoire
+  if (note.synthese && note.synthese.length) {
+    const sec = el("section", "note-chapter note-synthese");
+    sec.id = `syn-${note.id}`;
+    sec.appendChild(el("h2", "note-h2", "Synthèse visuelle"));
+    sec.appendChild(el("p", "note-objectif", "Regarde le schéma, cache-le, redessine-le de mémoire, puis compare."));
+    note.synthese.forEach((s) => sec.appendChild(block({ type: "schema", ...s }, ctx)));
+    container.appendChild(sec);
   }
 
   if (note.deck) {

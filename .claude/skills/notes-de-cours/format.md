@@ -21,9 +21,14 @@ export const note = {
       blocs: [ /* voir la liste des blocs */ ],
     },
   ],
+  synthese: [                              // schéma(s) de synthèse affichés en fin de note (« Synthèse visuelle »)
+    { svg: "<svg …>…</svg>", legende: "Comment lire le schéma." },
+  ],
   aRetenir: ["Une phrase par idée clé, 5 à 10 au total."],
 };
 ```
+
+`synthese` est **obligatoire en pratique** : un schéma qui résume toute la note en une image (le processus ou la carte des notions), pour que l'utilisateur travaille sa mémoire visuelle en le redessinant. Il ne recopie pas un schéma d'un chapitre : il les relie. Mêmes règles SVG que les blocs `schema` (section 3).
 
 Dans tous les champs texte : `**gras**`, `*italique*` et `` `code` `` sont rendus ; une ligne vide sépare deux paragraphes. Pas de HTML (il est échappé).
 
